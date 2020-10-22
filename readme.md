@@ -58,14 +58,70 @@ var a = {
   edad: 20,
   hola: true,
 };
-var { nombre, ...rest} = a;
+var { nombre, ...rest } = a;
 ```
 
 ## Clases
 
-En js una clase es una funcion 
+En js una clase es una funcion
 
 ```javascript
-typeof function (){}
-typeof class Foo{}
+typeof function () {};
+typeof class Foo {};
+```
+
+## Promesas
+
+Permite ejecutar codigo asincrono. Termina en algun punto en el futuro. Tiene dos estados exitoso o fallido.
+
+```javascript
+function getUsuarios() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve([
+        {
+          nombre: "karen",
+          edad: 222,
+        },
+      ]);
+    }, 2000);
+  });
+}
+getUsuarios().then(console.log);
+function getUsuarios() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject({ error: true, mensaje: "Hubo un error" });
+    }, 2000);
+  });
+}
+getUsuarios()
+  .then(function (usuarios) {
+    console.log(usuatios[0]);
+  })
+  .catch(function (error) {
+    console.warn(error);
+  });
+```
+
+## async await
+
+Una funcion asincrona responde con una Promesa.
+
+```javascript
+async function getUsuarios() {
+  return "hola";
+}
+getUsuarios();
+function esperar(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+async function getUsuarios() {
+  await esperar(3000);
+  return [
+    { nombre: "karen", pass: Math.random() },
+    { nombre: "karen", pass: Math.random() },
+  ];
+}
+getUsuarios().then(console.log);
 ```
