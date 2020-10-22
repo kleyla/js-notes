@@ -40,3 +40,25 @@ Ej. encuentra todo lo que empiece con un numero, y termine en un punto
 Encuentra los tag de un html
 
 <.*>
+
+## Grupos y secuencias opcionales
+
+Ej. ( karen)? es opcional
+
+Hola( karen)? como estas\?
+
+Ej. encuentra cualquie nombre que se le ponga
+
+Hola( [a-z]+)? como estas\?
+
+## Caracteres especiales de ancla
+
+Limita los resultados que sea el inicio de linea.
+
+^como estas\?
+
+Fin de linea.
+
+1000 pesos$
+
+### Para practicar https://regex101.com/
