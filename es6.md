@@ -126,3 +126,49 @@ class Person {
 ```
 
 ## Inheritance in ES6
+
+En la clase se pone extends clasePadre y en el constructor super(parametrosDelPadre)
+
+```javascript
+class Pilot extends Person {
+  constructor(exp, type, licence) {
+    super("Leyla", 20);
+    this.experience = exp;
+    this.type = type;
+    this.licence = licence;
+  }
+  getData = () => {
+    console.log(`Experience: ${this.experience} and type ${this.type}`);
+  };
+}
+const ley = new Pilot(28, "private", "thie12");
+ley.getData();
+console.log(ley);
+ley.getDetails();
+```
+
+## Callbacks and Promises
+
+Creando una promesa:
+
+```javascript
+const postListPromise = new Promise((resolve, reject) => {
+  $.get("https://jsonplaceholder.typicode.com/posts", (data) => {
+    resolve(data);
+  }).fail((err) => {
+    reject(new Error(`Call failed for Get post list ${err.status}`));
+  });
+});
+```
+
+Llamando una promesa:
+
+```javascript
+postListPromise
+  .then((response) => {
+    console.log("Call Success! Response => ", response);
+  })
+  .catch((error) => {
+    console.log("Call Failed =>", error);
+  });
+```

@@ -158,3 +158,52 @@ const ley = new Pilot(28, "private", "thie12");
 ley.getData();
 console.log(ley);
 ley.getDetails();
+
+// Callbacks and Promises
+
+const postListPromise = new Promise((resolve, reject) => {
+  $.get("https://jsonplaceholder.typicode.com/posts", (data) => {
+    // console.log(data);
+    resolve(data);
+  }).fail((err) => {
+    reject(new Error(`Call failed for Get post list ${err.status}`));
+  });
+});
+
+postListPromise
+  .then((response) => {
+    // console.log("Call Success! Response => ", response);
+  })
+  .catch((error) => {
+    console.log("Call Failed =>", error);
+  });
+
+// it doesnt work
+let list = [];
+$.get("https://jsonplaceholder.typicode.com/posts", (response) => {
+  list = response;
+});
+console.log(list);
+
+// Promise with arrow function
+const postDetailsPromise = (data) =>
+  new Promise((resolve, reject) => {
+    $.get(
+      `https://jsonplaceholder.typicode.com/posts/${data[0].id}`,
+      (data) => {
+        console.log(data);
+        resolve(data);
+      }
+    ).fail((err) => {
+      reject(`Details failed ${err}`);
+    });
+  });
+
+postListPromise
+  .then(postDetailsPromise)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log("Error promise ", error);
+  });
